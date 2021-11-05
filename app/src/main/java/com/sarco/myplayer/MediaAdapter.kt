@@ -18,9 +18,7 @@ class MediaAdapter(private val mediaList: List<Media>):
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
 
-        val view = LayoutInflater.from(context).inflate(R.layout.view_media_item,
-            parent, false)
-
+        val view = parent.inflate(R.layout.view_media_item)
         return ViewHolder(view)
 
     }
@@ -35,17 +33,15 @@ class MediaAdapter(private val mediaList: List<Media>):
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         private val title: TextView = view.findViewById(R.id.mediaTitle)
-        private val url: ImageView = view.findViewById(R.id.mediaThumb)
+        private val imageView: ImageView = view.findViewById(R.id.mediaThumb)
 
         fun bind(mediaItem: Media){
 
             title.text = mediaItem.title
-
-            Glide.with(url)
-                .load(mediaItem.url)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .into(url)
+            imageView.loadURL(mediaItem.url)
+            itemView.setOnClickListener {
+                toast(title.text.toString())
+            }
 
         }
     }
