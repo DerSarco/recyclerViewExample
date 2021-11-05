@@ -1,6 +1,8 @@
 package com.sarco.myplayer
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
@@ -30,3 +32,9 @@ fun ImageView.loadURL(mediaUrl: String) = Glide.with(this)
     .diskCacheStrategy(DiskCacheStrategy.ALL)
     .centerCrop()
     .into(this)
+
+
+inline fun <reified T: Activity> Context.startActivity() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
+}
