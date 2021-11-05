@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sarco.myplayer.Media.*
 import com.sarco.myplayer.databinding.ViewMediaItemBinding
 
-class MediaAdapter(private val mediaList: List<Media>):
+
+class MediaAdapter(private val mediaList: List<Media>, private val listener: (Media) -> Unit):
     RecyclerView.Adapter<MediaAdapter.ViewHolder>(){
     private lateinit var context: Context
 
@@ -22,6 +23,7 @@ class MediaAdapter(private val mediaList: List<Media>):
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val media = mediaList[position]
         holder.bind(media)
+        holder.itemView.setOnClickListener { listener(media) }
     }
 
     override fun getItemCount(): Int = mediaList.size
@@ -38,10 +40,6 @@ class MediaAdapter(private val mediaList: List<Media>):
                 mediaVideoIndicator.visibility = when(mediaItem.type){
                     Type.PHOTO -> View.GONE
                     Type.VIDEO -> View.VISIBLE
-                }
-
-                root.setOnClickListener {
-                    toast(binding.mediaTitle.text.toString())
                 }
             }
 
