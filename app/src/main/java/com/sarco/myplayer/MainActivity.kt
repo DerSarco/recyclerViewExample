@@ -17,17 +17,6 @@ class MainActivity : AppCompatActivity() {
         val recycler: RecyclerView = findViewById(R.id.recycler)
         recycler.adapter = MediaAdapter(getItems())
 
-        recycler.setOnClickListener {
-            toast("Hello")
-        }
-
-        /*     val etMessage = findViewById<EditText>(R.id.etMessage)
-             val btnShowMessage = findViewById<Button>(R.id.btnShowMessage)
-
-             btnShowMessage.setOnClickListener {
-                 toast("Hello ${etMessage?.text.toString()}")
-        }*/
-
         startActivity<MainActivity>()
 
     }
