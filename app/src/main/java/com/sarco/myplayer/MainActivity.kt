@@ -7,7 +7,7 @@ import com.sarco.myplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val adapter: MediaAdapter by lazy {
+    private val adapter: MediaAdapter by lazy {
         MediaAdapter(getItems()) { toast(it.title) }
     }
 
@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.recycler.adapter = adapter
 
-        val textView: TextView = TextView(this).apply2 {
-            text = "Hello"
-            hint = "GoodBye"
-            textSize = 20f
-        }
+//        val textView: TextView = TextView(this).apply2 {
+//            text = "Hello"
+//            hint = "GoodBye"
+//            textSize = 20f
+//        }
 
     }
 

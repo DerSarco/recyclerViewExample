@@ -6,12 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sarco.myplayer.Media.*
 import com.sarco.myplayer.databinding.ViewMediaItemBinding
+import kotlin.properties.Delegates
 
 
-class MediaAdapter(private val mediaList: List<Media>, private val listener: (Media) -> Unit):
+class MediaAdapter(mediaList: List<Media>, private val listener: (Media) -> Unit):
     RecyclerView.Adapter<MediaAdapter.ViewHolder>(){
     private lateinit var context: Context
 
+    private var mediaList: List<Media> by Delegates.observable(mediaList){_, _, _ ->
+            notifyDataSetChanged()
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -42,9 +47,8 @@ class MediaAdapter(private val mediaList: List<Media>, private val listener: (Me
                     Type.VIDEO -> View.VISIBLE
                 }
             }
-
-
         }
+
     }
 
 }
