@@ -1,14 +1,11 @@
 package com.sarco.myplayer
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.sarco.myplayer.Media.*
+import com.sarco.myplayer.databinding.ViewMediaItemBinding
 
 class MediaAdapter(private val mediaList: List<Media>):
     RecyclerView.Adapter<MediaAdapter.ViewHolder>(){
@@ -17,7 +14,6 @@ class MediaAdapter(private val mediaList: List<Media>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-
         val view = parent.inflate(R.layout.view_media_item)
         return ViewHolder(view)
 
@@ -32,16 +28,23 @@ class MediaAdapter(private val mediaList: List<Media>):
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
-        private val title: TextView = view.findViewById(R.id.mediaTitle)
-        private val imageView: ImageView = view.findViewById(R.id.mediaThumb)
+        private val binding = ViewMediaItemBinding.bind(view)
 
         fun bind(mediaItem: Media){
+            with(binding){
+                mediaTitle.text = mediaItem.title
+                mediaThumb.loadURL(mediaItem.url)
 
-            title.text = mediaItem.title
-            imageView.loadURL(mediaItem.url)
-            itemView.setOnClickListener {
-                toast(title.text.toString())
+                mediaVideoIndicator.visibility = when(mediaItem.type){
+                    Type.PHOTO -> View.GONE
+                    Type.VIDEO -> View.VISIBLE
+                }
+
+                root.setOnClickListener {
+                    toast(binding.mediaTitle.text.toString())
+                }
             }
+
 
         }
     }

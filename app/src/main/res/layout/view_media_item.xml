@@ -6,13 +6,31 @@
     android:orientation="vertical"
     android:padding="2dp">
 
-    <ImageView
-        android:id="@+id/mediaThumb"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        tools:src="@mipmap/ic_launcher"
-        />
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <ImageView
+           android:id="@+id/mediaThumb"
+           android:layout_width="match_parent"
+           android:layout_height="200dp"
+           android:scaleType="centerCrop"
+           tools:src="@mipmap/ic_launcher"
+           />
+
+
+       <ImageView
+           android:id="@+id/mediaVideoIndicator"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:visibility="gone"
+           tools:visibility="visible"
+           android:scaleType="centerCrop"
+           android:src="@drawable/ic_play_circle_outlined"
+           />
+
+   </FrameLayout>
 
     <TextView
         android:id="@+id/mediaTitle"

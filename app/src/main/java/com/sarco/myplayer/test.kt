@@ -1,18 +1,18 @@
 package com.sarco.myplayer
 
-import android.util.Log
+import android.content.Context
+import android.view.ContentInfo
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 
-interface Logger {
-
-    val tag: String
-        get() = javaClass.simpleName
-
-    fun logD(message: String){
-        Log.d(tag, message)
+fun test(context: Context) {
+    val textView = TextView(context).apply {
+        text = "Hola!"
+        hint = "Goodbye"
+        textSize = 25f
     }
 
-    fun logE(message: String){
-        Log.e(tag, message)
-    }
 
+    
 }
