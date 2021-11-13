@@ -4,26 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".DetailActivity">
 
-    <ProgressBar
-        android:id="@+id/progress"
+    <ImageView
+        android:id="@+id/mediaThumb"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        tools:src="@mipmap/ic_launcher"
+        />
+
+
+    <ImageView
+        android:id="@+id/mediaVideoIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
         tools:visibility="visible"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="2dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/view_media_item"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_play_circle_outlined"
         />
 
 </FrameLayout>

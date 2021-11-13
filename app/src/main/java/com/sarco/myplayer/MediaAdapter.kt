@@ -9,13 +9,15 @@ import com.sarco.myplayer.databinding.ViewMediaItemBinding
 import kotlin.properties.Delegates
 
 
-class MediaAdapter(mediaList: List<Media>, private val listener: (Media) -> Unit):
+typealias Listener = (Media) -> Unit
+
+class MediaAdapter(mediaList: List<Media> = emptyList(),
+                   private val listener: Listener):
     RecyclerView.Adapter<MediaAdapter.ViewHolder>(){
     private lateinit var context: Context
 
-    private var mediaList: List<Media> by Delegates.observable(mediaList){_, _, _ ->
+    var mediaList: List<Media> by Delegates.observable(mediaList){_, _, _ ->
             notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +32,7 @@ class MediaAdapter(mediaList: List<Media>, private val listener: (Media) -> Unit
         holder.bind(media)
         holder.itemView.setOnClickListener { listener(media) }
     }
+
 
     override fun getItemCount(): Int = mediaList.size
 
